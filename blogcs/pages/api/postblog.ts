@@ -4,9 +4,13 @@ import connecttodb from "@/utils/connection";
 export default async function handler(req:NextApiRequest,res:NextApiResponse){
     try {
         await connecttodb()
-        const {id}=req.query
-        console.log("Attempting Delete")
-        const posts=await blogmodel.findByIdAndDelete(id)
+        console.log("Attempting Post")
+        const {post,postuser,likes}=req.body
+        const posts=await blogmodel.insertMany({
+            post
+            ,postuser
+            ,likes
+        })
         res.json({posts})
     } catch (error) {
         console.log(error)
