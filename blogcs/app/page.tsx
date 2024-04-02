@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect } from "react";
 import React from "react";
 import connecttodb from "@/utils/connection";
@@ -16,23 +16,29 @@ export default function Page() {
   };
   const addpost=async()=>{
     console.log("Frontend")
-    const insert=await fetch("http://localhost:3000/api/postblog",{
+    try {
+      const insert=await fetch("http://localhost:3000/api/postblog",{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
       },
       body:JSON.stringify({
+        "post":"Ahmed",
         "postuser":"Ahmed",
-        "post":"Ahmed 2",
-        "likes":0
+        "likes":"0"
       })
     })
+    const insertf=await insert.json()
+    console.log(insertf)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
     fetchBlog();
   }, []);
-
+  // fetchBlog()
 
   return (
     <div className="flex bg-slate-500">
