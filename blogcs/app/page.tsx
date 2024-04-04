@@ -7,15 +7,18 @@ export default function Page() {
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
-  const updatebyid=async(id:string,newpost:string)=>{
+  const updatebyid=async(id:string,post:string)=>{
     try {
       const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
       method:"PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body:JSON.stringify({
-        post:newpost
+        "post":post
       })
     })
-    console.log(`Successful update with text ${newpost}`,updates)
+    console.log(`Successful update with text ${post}`,updates)
     } catch (error) {
       console.log("Error")
     }
@@ -112,10 +115,11 @@ export default function Page() {
         <input onChange={(e)=>setpostuser(e.target.value)}></input>
       </div>
       <button onClick={()=>addpost("fucking eh","isaac","0")}>Add Post</button>
-      <button onClick={()=>console.log(blog[0]["_id"])}>TEST</button>
+      <button onClick={()=>console.log(blog[0])}>TEST</button>
       <button onClick={()=>fetchbyid(blog[0]["_id"])}>Find By Id</button>
       <button onClick={()=>reset()}>Clear DB</button>
       <button onClick={()=>deletebyid(blog[0]["_id"])}>Delete By ID</button>
+      <button onClick={()=>updatebyid(blog[0]["_id"],"AHmed is og")}>Update By ID</button>
     </div>
   );
 }
