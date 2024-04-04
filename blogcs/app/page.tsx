@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import React from "react";
 import connecttodb from "@/utils/connection";
 import "../app.css"
+import { ObjectId } from "mongodb";
 export default function Page() {
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
-  const updatebyid=async(id:string,post:string)=>{
+  const updatebyid=async(id:any,post:string)=>{
     try {
       const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
       method:"PATCH",
@@ -114,7 +115,7 @@ export default function Page() {
         <label>What name would you like to share? </label>
         <input onChange={(e)=>setpostuser(e.target.value)}></input>
       </div>
-      <button onClick={()=>addpost("fucking eh","isaac","0")}>Add Post</button>
+      <button onClick={()=>addpost()}>Add Post</button>
       <button onClick={()=>console.log(blog[0])}>TEST</button>
       <button onClick={()=>fetchbyid(blog[0]["_id"])}>Find By Id</button>
       <button onClick={()=>reset()}>Clear DB</button>
