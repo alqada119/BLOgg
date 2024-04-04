@@ -6,6 +6,7 @@ import Notes from "../Components/notes"
 import Pencil from "../Components/pencil"
 import Trash from "../Components/trash"
 export default function Page() {
+  // TODO: ADD AUTHENTICATION, CSS this page
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
