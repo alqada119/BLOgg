@@ -5,13 +5,14 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     try {
         await connecttodb()
         const {id}=req.query
-        console.log("GETTING BY ID",id)
-        const get=await blogmodel.findById(id)
-        if (get){
-            res.json(get)
+        const get=await blogmodel.findById(id);
+        console.log("GETTING BY ID",get)
+        if (!get){
+            res.status(404).json({error:"Post not found"})
+            return
         }
     } catch (error) {
-        console.log(error)
+        res.status(500).json({error})
     }
     
 }

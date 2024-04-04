@@ -11,6 +11,6 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         ,"likes":likes}])
         res.json({posts})
     } catch (error) {
-        console.log(error)
+        res.status(500).json({error})
     }
 }

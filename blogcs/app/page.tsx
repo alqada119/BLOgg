@@ -7,6 +7,27 @@ export default function Page() {
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
+  const updatebyid=async(id:string,newpost:string)=>{
+    try {
+      const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
+      method:"PATCH",
+      body:JSON.stringify({
+        post:newpost
+      })
+    })
+    console.log(`Successful update with text ${newpost}`,updates)
+    } catch (error) {
+      console.log("Error")
+    }
+    
+  }
+  const fetchbyid=async(postid:string)=>{
+    const response = await fetch(`http://localhost:3000/api/${postid}`,{
+      method:"GET"
+    });
+    const final=await response.json()
+    return final.posts
+  }
   const reset=async()=>{
     const deletes=await fetch("http://localhost:3000/api/deleteall",{
       method:"DELETE"
@@ -46,6 +67,19 @@ export default function Page() {
       console.log(error)
     }
   }
+  const deletebyid=async(id:string)=>{
+    try {
+      const deletes=await fetch(`http://localhost:3000/api/${id}/deletebyid`,{
+        method:"DELETE"
+      })
+      console.log("Successfuly deleted",deletes)
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+    
+
+  }
 
   useEffect(() => {
     const getposts=async()=>{
@@ -78,8 +112,10 @@ export default function Page() {
         <input onChange={(e)=>setpostuser(e.target.value)}></input>
       </div>
       <button onClick={()=>addpost("fucking eh","isaac","0")}>Add Post</button>
-      <button onClick={()=>console.log(post)}>TEST</button>
+      <button onClick={()=>console.log(blog[0]["_id"])}>TEST</button>
+      <button onClick={()=>fetchbyid(blog[0]["_id"])}>Find By Id</button>
       <button onClick={()=>reset()}>Clear DB</button>
+      <button onClick={()=>deletebyid(blog[0]["_id"])}>Delete By ID</button>
     </div>
   );
 }
