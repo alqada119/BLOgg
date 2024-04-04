@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
-import connecttodb from "@/utils/connection";
-import "../app.css"
-import { ObjectId } from "mongodb";
+import "../app.css";
+import Notes from "../Components/notes"
+import Pencil from "../Components/pencil"
+import Trash from "../Components/trash"
 export default function Page() {
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
@@ -110,7 +111,6 @@ export default function Page() {
       </div>
       <div>
         <h1>Add A Blog</h1>
-        <label>What post would you like to share? </label>
         <input onChange={(e)=>setpost(e.target.value)}></input>
         <label>What name would you like to share? </label>
         <input onChange={(e)=>setpostuser(e.target.value)}></input>
