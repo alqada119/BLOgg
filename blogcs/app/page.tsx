@@ -6,12 +6,15 @@ import Notes from "../Components/notes"
 import Pencil from "../Components/pencil"
 import Trash from "../Components/trash"
 import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser } from "@clerk/clerk-react";
+import Router, { useRouter } from "next/navigation";
 export default function Page() {
-  // TODO: ADD Dashboard, ,Myposts section, ability to modify posts if they are yours, likes, upload pictures, more css
+  // DONE: Myposts section
+  //TODO: Add likes,trending section,ability to upload pictures/modifying posts
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
   const user=useUser()
+  const router=useRouter()
   const updatebyid=async(id:any,post:string)=>{
     try {
       const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
@@ -104,9 +107,11 @@ export default function Page() {
         <div className="bg-white rounded-md shadow-md h-60 p-4 flex-col">
           <div className="flex justify-between"><h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1> <UserButton/></div>
           <div className="mt-10 flex justify-between">
-          <button className="bg-red-800 text-white px-60 py-10 rounded-md ml-3"></button>
-          <button className="bg-red-800 text-white px-60 py-10 rounded-md"></button>
-          <button className="bg-red-800 text-white px-60 py-10 rounded-md"></button>
+            <SignedIn>
+            <button className="bg-red-800 text-white px-60 py-10 rounded-md ml-3"><h2 className="text-white font-semibold" onClick={()=>router.push("/posts")}>My Posts</h2></button>
+            <button className="bg-red-800 text-white px-60 py-10 rounded-md"><h2 className="text-white font-semibold">Trending</h2></button>
+            <button className="bg-red-800 text-white px-60 py-10 rounded-md"><h2 className="text-white font-semibold">Homework</h2></button>
+            </SignedIn>
           </div>
         </div>
 
