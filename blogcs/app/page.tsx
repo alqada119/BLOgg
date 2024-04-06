@@ -5,12 +5,13 @@ import "../app.css";
 import Notes from "../Components/notes"
 import Pencil from "../Components/pencil"
 import Trash from "../Components/trash"
-import { SignInButton,SignUpButton,SignedIn, SignOutButton } from "@clerk/clerk-react";
+import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser } from "@clerk/clerk-react";
 export default function Page() {
   // TODO: ADD AUTHENTICATION, CSS this page
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
+  const user=useUser()
   const updatebyid=async(id:any,post:string)=>{
     try {
       const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
@@ -100,8 +101,9 @@ export default function Page() {
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       <div className="flex-1 p-4">
-        <div className="bg-white mb-4 rounded-md shadow-md h-60 p-4">
-          <h1 className="text-xl font-semibold">Welcome to CS Blog</h1>
+        <div className="bg-white mb-4 rounded-md shadow-md h-60 p-4 flex justify-between">
+          <h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1>
+          <UserButton/>
         </div>
       </div>
 
