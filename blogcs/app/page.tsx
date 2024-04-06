@@ -7,7 +7,7 @@ import Pencil from "../Components/pencil"
 import Trash from "../Components/trash"
 import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser } from "@clerk/clerk-react";
 export default function Page() {
-  // TODO: ADD AUTHENTICATION, CSS this page
+  // TODO: ADD Dashboard, ,Myposts section, ability to modify posts if they are yours, likes, upload pictures, more css
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
