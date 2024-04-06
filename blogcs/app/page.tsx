@@ -65,12 +65,12 @@ export default function Page() {
       body:JSON.stringify({
         "post":post,
         "postuser":postuser,
-        "likes":"0"
+        "likes":"0",
+        "postuserid":user.user?.id
       })
     })
     const insertf=await insert.json()
-    setblog([...blog, { _id: insertf.id, post, postuser }]);
-    const refetch=await fetchBlog()
+    window.location.reload()
     } catch (error) {
       console.log(error)
     }
@@ -99,17 +99,22 @@ export default function Page() {
   // fetchBlog()
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex-col h-screen bg-gray-100">
       <div className="flex-1 p-4">
-        <div className="bg-white mb-4 rounded-md shadow-md h-60 p-4 flex justify-between">
-          <h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1>
-          <UserButton/>
+        <div className="bg-white rounded-md shadow-md h-60 p-4 flex-col">
+          <div className="flex justify-between"><h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1> <UserButton/></div>
+          <div className="mt-10 flex justify-between">
+          <button className="bg-red-800 text-white px-60 py-10 rounded-md ml-3"></button>
+          <button className="bg-red-800 text-white px-60 py-10 rounded-md"></button>
+          <button className="bg-red-800 text-white px-60 py-10 rounded-md"></button>
+          </div>
         </div>
+
       </div>
 
       
       <div className="flex-1 p-4">
-        <div className="bg-white p-4 mb-4 rounded-md shadow-md h-80">
+        <div className="bg-white p-4 mb-4 rounded-md shadow-md h-60">
           <h1 className="text-xl font-semibold mb-2">Your Daily Blogs</h1>
           <ul>
             {blog.map(posts => (
@@ -124,7 +129,7 @@ export default function Page() {
         </div>
 
         <SignedIn>
-          <div className="bg-white p-4 mb-4 rounded-md shadow-md">
+          <div className="bg-white p-4  rounded-md shadow-md mt-10">
             <h1 className="text-xl font-semibold mb-2">Add A Blog</h1>
             <input
               type="text"
@@ -155,7 +160,7 @@ export default function Page() {
         <button className="bg-green-500 text-white px-4 py-2 rounded-md" onClick={() => updatebyid(blog[0]["_id"],"ahmed")}>Update By ID</button> */}
       {/* </div> */}
 
-      <div className="flex justify-center mt-4 mb-20">
+      <div className="flex justify-center bg-white p-4  rounded-md shadow-md mt-10 m-4">
         <button className="bg-green-500 text-white px-4 py-2 rounded-md"><SignInButton /></button>
         <button className="bg-yellow-500 text-white px-4 py-2 rounded-md ml-3"><SignUpButton /></button>
       </div>

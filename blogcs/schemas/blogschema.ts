@@ -1,8 +1,9 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose from "mongoose"
 interface blog{
     post:String,
     postuser:String,
-    likes:Number
+    likes:Number,
+    postuserid:string
 }
 const blogSchema=new mongoose.Schema<blog>({
 })
