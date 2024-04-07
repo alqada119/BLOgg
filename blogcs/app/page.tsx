@@ -9,7 +9,7 @@ import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser }
 import Router, { useRouter } from "next/navigation";
 export default function Page() {
   // DONE: Myposts section
-  //TODO: Add likes,trending section,ability to upload pictures/modifying posts
+  //TODO: Add likes,ability to upload pictures/modifying posts
   const [blog,setblog]=useState([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
@@ -31,6 +31,25 @@ export default function Page() {
       console.log("Error")
     }
     
+  }
+  const likePost=async(id:any,likes:number)=>{
+    const newlike=likes+1
+    console.log("Liked",id)
+    const updatelike=async()=>{
+      const update=await fetch(`http://localhost:3000/api/${id}/updatelikes`,{
+        method:"PATCH",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+          "likes":newlike
+        })
+      })
+      console.log(update)
+    }
+    const upd=await updatelike()
+    console.log(post)
+    // window.location.reload()
   }
   const fetchbyid=async(postid:string)=>{
     const response = await fetch(`http://localhost:3000/api/${postid}`,{
@@ -68,7 +87,7 @@ export default function Page() {
       body:JSON.stringify({
         "post":post,
         "postuser":postuser,
-        "likes":"0",
+        "likes":0,
         "postuserid":user.user?.id
       })
     })
@@ -126,8 +145,12 @@ export default function Page() {
               <li key={posts["_id"]} className="mb-2 flex justify-start items-center">
                 <div className="text-lg flex-row">{posts["post"]}</div>
                 <div className="text-sm text-gray-500 ml-3 w-15">By: {posts["postuser"]}</div>
+                <SignedIn>
+                  <button onClick={()=>likePost(posts["_id"],posts["likes"])}>Like</button>
+                </SignedIn>
                 <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(posts["_id"])}><Trash/></button></div>
                 <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(posts["_id"])}><Pencil/></button></div>
+                <div className="text-lg">{posts["likes"]} Likes</div>
               </li>
             ))}
           </ul>

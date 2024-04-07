@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 interface blog{
     post:String,
     postuser:String,
-    likes:Number,
+    likes:number,
     postuserid:string
 }
 const blogSchema=new mongoose.Schema<blog>({

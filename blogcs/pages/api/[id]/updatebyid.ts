@@ -8,13 +8,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { id } = req.query;
         const ids = new ObjectId(`${id}`);
         const { post } = req.body;
-
+        const {likes}=req.body;
         console.log("Request Body:", req.body);
         console.log("ID:", id);
         console.log("Post:", post);
 
         // Use findByIdAndUpdate to update the post field
-        const updates = await blogmodel.collection.updateOne({_id:ids},{$set:{post:post}})
+        const updates = await blogmodel.collection.updateOne({_id:ids},{$set:{post:post,likes:likes}})
 
         console.log("Updating", updates);
 
