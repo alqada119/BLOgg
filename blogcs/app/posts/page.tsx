@@ -1,13 +1,44 @@
 "use client"
 import "../../app.css";
-import { SignInButton, SignUpButton, useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
+import Pencil from "../../Components/pencil"
+import Trash from "../../Components/trash"
 
 export default function Posts() {
     const [myblog, setMyBlog] = useState([]);
     const user = useUser();
     const router = useRouter();
+    const updatebyid=async(id:any,post:string)=>{
+        try {
+          const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
+          method:"PATCH",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body:JSON.stringify({
+            "post":post
+          })
+        })
+        console.log(`Successful update with text ${post}`,updates)
+        } catch (error) {
+          console.log("Error")
+        }
+    }
+    const deletebyid=async(id:string)=>{
+        try {
+          const deletes=await fetch(`http://localhost:3000/api/${id}/deletebyid`,{
+            method:"DELETE"
+          })
+          console.log("Successfuly deleted",deletes)
+          window.location.reload()
+        } catch (error) {
+          console.log(error)
+        }
+        
+    
+      }
     const fetchMyBlogs = async (id:string) => {
         const fetchMyBlogs = await fetch(`http://localhost:3000/api/${id}`, {
             method: "GET"
@@ -33,6 +64,8 @@ export default function Posts() {
                             {myblog.map((post, index) => (
                                 <div key={index} className="">
                                    <li className="">{post.post}</li>
+                                   <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(post["_id"])}><Pencil/></button></div>
+                                   <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(post["_id"])}><Trash/></button></div>
                                 </div>
                             ))}
                         </div>

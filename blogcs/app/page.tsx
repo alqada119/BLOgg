@@ -2,11 +2,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import "../app.css";
-import Notes from "../Components/notes"
-import Pencil from "../Components/pencil"
-import Trash from "../Components/trash"
 import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser } from "@clerk/clerk-react";
-import Router, { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 export default function Page() {
   // DONE: Myposts section
   //TODO: Add likes,ability to upload pictures/modifying posts
@@ -20,24 +17,7 @@ export default function Page() {
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
   const user=useUser()
-  const router=useRouter()
-  const updatebyid=async(id:any,post:string)=>{
-    try {
-      const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
-      method:"PATCH",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({
-        "post":post
-      })
-    })
-    console.log(`Successful update with text ${post}`,updates)
-    } catch (error) {
-      console.log("Error")
-    }
-    
-  }
+  const router=useRouter()  
   const likePost=async(id:any,likes:number)=>{
     const newlike=likes+1
     console.log("Liked",id)
@@ -74,13 +54,13 @@ export default function Page() {
     console.log(post)
     // window.location.reload()
   }
-  const fetchbyid=async(postid:string)=>{
-    const response = await fetch(`http://localhost:3000/api/${postid}`,{
-      method:"GET"
-    });
-    const final=await response.json()
-    return final.posts
-  }
+  // const fetchbyid=async(postid:string)=>{
+  //   const response = await fetch(`http://localhost:3000/api/${postid}`,{
+  //     method:"GET"
+  //   });
+  //   const final=await response.json()
+  //   return final.posts
+  // }
   const fetchBlog = async () => {
     try {
       const response = await fetch("http://localhost:3000/api/getblog", {
@@ -116,20 +96,6 @@ export default function Page() {
       console.log(error)
     }
   }
-  const deletebyid=async(id:string)=>{
-    try {
-      const deletes=await fetch(`http://localhost:3000/api/${id}/deletebyid`,{
-        method:"DELETE"
-      })
-      console.log("Successfuly deleted",deletes)
-      window.location.reload()
-    } catch (error) {
-      console.log(error)
-    }
-    
-
-  }
-
   useEffect(() => {
     fetchBlog()
   }, []);
@@ -163,8 +129,6 @@ export default function Page() {
                 <SignedIn>
                   <button onClick={()=>likePost(posts["_id"],posts["likes"])}>Like</button>
                 </SignedIn>
-                <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(posts["_id"])}><Trash/></button></div>
-                <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(posts["_id"])}><Pencil/></button></div>
                 <div className="text-lg">{posts["likes"]} Likes</div>
               </li>
             ))}
