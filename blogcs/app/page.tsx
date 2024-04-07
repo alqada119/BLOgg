@@ -58,12 +58,6 @@ export default function Page() {
     const final=await response.json()
     return final.posts
   }
-  const reset=async()=>{
-    const deletes=await fetch("http://localhost:3000/api/deleteall",{
-      method:"DELETE"
-    })
-    console.log(deletes)
-  }
   const fetchBlog = async () => {
     try {
       const response = await fetch("http://localhost:3000/api/getblog",{
