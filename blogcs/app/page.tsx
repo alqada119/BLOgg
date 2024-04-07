@@ -5,8 +5,7 @@ import "../app.css";
 import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/navigation";
 export default function Page() {
-  // DONE: Myposts section
-  //TODO: Add likes,ability to upload pictures/modifying posts
+  //TODO: Ability to click on post, and add comments, ability to upload pictures/modifying posts
   interface Blog {
     post:string,
     likes:number,
