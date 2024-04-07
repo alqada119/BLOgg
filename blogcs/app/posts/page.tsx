@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import Pencil from "../../Components/pencil"
 import Trash from "../../Components/trash"
+import Note from "../../Components/notes"
 
 export default function Posts() {
     const [myblog, setMyBlog] = useState([]);
@@ -62,10 +63,11 @@ export default function Posts() {
                     {myblog.length > 0 ? (
                         <div>
                             {myblog.map((post, index) => (
-                                <div key={index} className="">
-                                   <li className="">{post.post}</li>
-                                   <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(post["_id"])}><Pencil/></button></div>
-                                   <div className="ml-2 flex justify-end items-end "><button className="" onClick={() => deletebyid(post["_id"])}><Trash/></button></div>
+                                <div key={index} className="flex items-center gap-4">
+                                    <div><Note/></div>
+                                   <div className=" font-semibold text-2xl">{post.post}</div>
+                                   <div className="ml-2 flex"><button className="" onClick={() => deletebyid(post["_id"])}><Pencil/></button></div>
+                                   <div className="ml-2 flex"><button className="" onClick={() => deletebyid(post["_id"])}><Trash/></button></div>
                                 </div>
                             ))}
                         </div>
