@@ -10,7 +10,13 @@ import Router, { useRouter } from "next/navigation";
 export default function Page() {
   // DONE: Myposts section
   //TODO: Add likes,ability to upload pictures/modifying posts
-  const [blog,setblog]=useState([]);
+  interface Blog {
+    post:string,
+    likes:number,
+    postuser:string,
+    postuserid:string
+  }
+  const [blog,setblog]=useState<Blog[]>([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
   const user=useUser()
@@ -46,6 +52,23 @@ export default function Page() {
         })
       })
       console.log(update)
+      if (update.status==200){
+        console.log("Successful update")
+        blog.map((posts)=>{
+          if (posts["_id"]==id){
+            console.log("Found")
+            return {...posts,likes:posts["likes"]=newlike}
+          }
+          else{
+            return posts
+          }
+          
+        })
+      window.location.reload()
+      }
+      else{
+        console.log("Failed To Update -Frontend")
+      }
     }
     const upd=await updatelike()
     console.log(post)
@@ -60,16 +83,18 @@ export default function Page() {
   }
   const fetchBlog = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/getblog",{
-        method:"GET"
+      const response = await fetch("http://localhost:3000/api/getblog", {
+        method: "GET"
       });
-      const final=await response.json()
-      return final.posts
+      const { posts } = await response.json();
+      setblog(posts); // Update the state with fetched posts
+      return posts;
     } catch (error) {
       console.error(error);
-      return []
+      return [];
     }
   };
+  
   const addpost=async()=>{
     console.log("Frontend")
     try {
@@ -106,11 +131,7 @@ export default function Page() {
   }
 
   useEffect(() => {
-    const getposts=async()=>{
-      const posts=await fetchBlog();
-      setblog(posts)
-    }
-    getposts() 
+    fetchBlog()
   }, []);
   // fetchBlog()
 

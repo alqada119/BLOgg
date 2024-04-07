@@ -7,8 +7,10 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         const {id}=req.query
         const ids = new ObjectId(`${id}`);
         const {likes}=req.body;
+        const likess=parseInt(likes)
         console.log("Request Body:", likes);
-        const update=await blogmodel.collection.updateOne({id:ids},{$set:{likes:likes}})
+        const update=await blogmodel.collection.findOneAndUpdate({_id:ids},{$set:{likes:likess}})
+        console.log("Updating",update)
         res.status(200).json({update})
     } catch (error) {
         res.status(500).json({error})
