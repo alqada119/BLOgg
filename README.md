@@ -5,3 +5,4 @@
 - [x] Edit a post
 - [x] Delete a post
 - [x] View a post
+- [x] View all posts
