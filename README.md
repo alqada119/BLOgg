@@ -7,7 +7,7 @@
 - [x] View a post
 - [x] View all posts
 - [x] View all posts by a user
-- [x] Liske a post
+- [x] Like a post
 - [x] Unlike a post
 #### Future:
 - [ ] Comment on a post
