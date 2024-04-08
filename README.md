@@ -16,3 +16,4 @@
 - [ ] Edit a comment
 - [ ] Delete a comment
 - [ ] View all likes on a post
+- [ ] View all likes by a user
