@@ -8,3 +8,4 @@
 - [x] View all posts
 - [x] View all posts by a user
 - [x] Like a post
+- [x] Unlike
