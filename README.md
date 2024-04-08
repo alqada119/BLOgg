@@ -10,3 +10,4 @@
 - [x] Like a post
 - [x] Unlike a post
 #### Future:
+- [ ] Comment on a post
