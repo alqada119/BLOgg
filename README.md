@@ -20,3 +20,4 @@
 - [ ] Follow a user/users
 - [ ] Use socket.io? for chats
 - [ ] Use socket.io? for notifications
+- [ ] Use socket.io? for likes
