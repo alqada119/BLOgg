@@ -10,7 +10,7 @@
 - [x] Like a post
 - [x] Unlike a post
 #### Future:
-- [ ] Comment on a post
+- [ ] Comments on a post
 - [ ] View all comments on a post
 - [ ] View all comments by a user
 - [ ] Edit a comment
