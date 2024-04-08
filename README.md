@@ -14,3 +14,4 @@
 - [ ] View all comments on a post
 - [ ] View all comments by a user
 - [ ] Edit a comment
+- [ ] Delete a comment
