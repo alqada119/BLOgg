@@ -19,3 +19,4 @@
 - [ ] View all likes by a user
 - [ ] Follow a user/users
 - [ ] Use socket.io? for chats
+- [ ] Use socket.io? for notifications
