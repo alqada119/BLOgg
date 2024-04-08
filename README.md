@@ -11,3 +11,4 @@
 - [x] Unlike a post
 #### Future:
 - [ ] Comment on a post
+- [ ] View all comments on a post
