@@ -10,13 +10,4 @@
 #### Future:
 - [ ] View a post
 - [ ] Comments on a post
-- [ ] View all comments on a post
-- [ ] View all comments by a user
-- [ ] Edits a comment
-- [ ] Delete a comment
-- [ ] View all likes on a post
-- [ ] View all likes by a user
-- [ ] Follow a user/users
-- [ ] Use socket.io? for chats
-- [ ] Use socket.io? for notifications
-- [ ] Use socket.io? for likes
+- [ ] socket.io for real-time updates
