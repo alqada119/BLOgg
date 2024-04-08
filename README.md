@@ -13,7 +13,7 @@
 - [ ] Comments on a post
 - [ ] View all comments on a post
 - [ ] View all comments by a user
-- [ ] Edit a comment
+- [ ] Edits a comment
 - [ ] Delete a comment
 - [ ] View all likes on a post
 - [ ] View all likes by a user
