@@ -18,4 +18,4 @@
 - [ ] View all likes on a post
 - [ ] View all likes by a user
 - [ ] Follow a user/users
-- [ ] Use socket.io?
+- [ ] Use socket.io? for chats
