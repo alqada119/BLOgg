@@ -26,9 +26,15 @@ export default function PostId(){
     },[])
     return (<>
     {/* TODO:CSS THIS AND ADD COMMENT */}
+    <div>
     {post?.post}
     {post?.postuser}
     {post?.likes}
+    </div>
+    
+    <div>
+        Comments Here
+    </div>
     
     {/* Used Useparams for id from url */}
     </>)
