@@ -4,6 +4,7 @@ import {useParams} from "next/navigation"
 import { useEffect } from "react"
 import { useState } from "react"
 export default function PostId(){
+    //TODO: MAP Comments,CSS
     interface blog{
         post:string,
         postuser:string,
