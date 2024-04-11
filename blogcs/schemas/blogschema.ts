@@ -3,7 +3,8 @@ interface blog{
     post:String,
     postuser:String,
     likes:number,
-    postuserid:string
+    postuserid:string,
+    comments:string[]
 }
 const blogSchema=new mongoose.Schema<blog>({
 })

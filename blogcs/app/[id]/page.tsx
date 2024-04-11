@@ -8,8 +8,10 @@ export default function PostId(){
         post:string,
         postuser:string,
         likes:number,
-        postuserid:string
+        postuserid:string,
+        comments:string[]
     }
+    const [comment,setcomment]=useState("");
     const params=useParams<{id:string}>()
     const [post,setpost]=useState<blog>()
     const getblog=async()=>{
@@ -20,6 +22,12 @@ export default function PostId(){
         const post=await fetched.json()
         setpost(post)
         console.log(post)
+    }
+    const addcomment=async()=>{
+        const posttobackend=await fetch("http://localhost:3000/api/${params?.id}/getbyid")
+        const updatedComment=[...(post?.comments||[]),comment]
+        const updatedPost:blog={...(post as blog),comments:updatedComment}
+        setpost(updatedPost)
     }
     useEffect(()=>{
         getblog()
@@ -33,7 +41,10 @@ export default function PostId(){
     </div>
     
     <div>
-        Comments Here
+        <label>Comment</label>
+        <input onChange={(e)=>setcomment(e.target.value)}></input>
+        <button onClick={()=>addcomment()}>Comment</button>
+        <button onClick={()=>console.log(post)}>Test</button>
     </div>
     
     {/* Used Useparams for id from url */}
