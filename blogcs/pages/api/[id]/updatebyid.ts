@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { id } = req.query;
         const ids = new ObjectId(`${id}`);
         const { post } = req.body;
-        console.log("Request Body:", req.body);
+        console.log("Request Body:", req.body, req.body.post);
         console.log("ID:", id);
         console.log("Post:", post);
 

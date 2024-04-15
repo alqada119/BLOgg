@@ -4,7 +4,7 @@ import {useParams} from "next/navigation"
 import { useEffect } from "react"
 import { useState } from "react"
 export default function PostId(){
-    //TODO: MAP Comments,CSS
+    //TODO: MAP Comments,CSS, Add comment to arr in backend
     interface blog{
         post:string,
         postuser:string,
@@ -25,11 +25,27 @@ export default function PostId(){
         console.log(post)
     }
     const addcomment=async()=>{
-        const posttobackend=await fetch("http://localhost:3000/api/${params?.id}/getbyid")
         const updatedComment=[...(post?.comments||[]),comment]
         const updatedPost:blog={...(post as blog),comments:updatedComment}
         setpost(updatedPost)
+        const addtobackend=await fetch(`http://localhost:3000/api/${params?.id}/updatecomments`,{
+            method:"PUT",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({comment})
+        })
+        console.log(addtobackend)
     }
+    // const testupdate=async(post:any)=>{
+    //     const backed=await fetch(`http://localhost:3000/api/${params?.id}/updatebyid`,{
+    //         method:"PUT",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body:JSON.stringify({post})
+    //     })
+    // }
     useEffect(()=>{
         getblog()
     },[])
@@ -45,7 +61,7 @@ export default function PostId(){
         <label>Comment</label>
         <input onChange={(e)=>setcomment(e.target.value)}></input>
         <button onClick={()=>addcomment()}>Comment</button>
-        <button onClick={()=>console.log(post)}>Test</button>
+        <button onClick={()=>console.log(post?.comments)}>Test COmments</button>
     </div>
     
     {/* Used Useparams for id from url */}
