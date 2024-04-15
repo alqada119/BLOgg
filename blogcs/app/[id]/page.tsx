@@ -33,7 +33,7 @@ export default function PostId(){
             headers:{
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({comment})
+            body:JSON.stringify({comment:comment})
         })
     }
     // const testupdate=async(post:any)=>{

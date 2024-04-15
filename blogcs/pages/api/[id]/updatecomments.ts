@@ -10,10 +10,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         const ids = new ObjectId(`${id}`);
         const {comment}=req.body
         console.log(comment)
-        const post=await blogmodel.collection.findOne({_id:ids})
-        console.log(post,post?.comments)
-        const newarr:string[]=post?.comments.push(comment)
-        const updates=await blogmodel.collection.updateOne({_id:ids},{$set:{comments:newarr}})
+        const updates=await blogmodel.collection.updateOne({_id:ids},{$push:{comments:comment}})
         console.log("Added Comments",updates)
         res.status(200).json({message:"Success"})
     } catch (error) {
