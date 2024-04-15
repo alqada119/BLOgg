@@ -3,8 +3,9 @@
 import {useParams} from "next/navigation"
 import { useEffect } from "react"
 import { useState } from "react"
+import "../../app.css"
 export default function PostId(){
-    //TODO: MAP Comments,CSS, Add comment to comment array in backend
+    //TODO: CSS
     interface blog{
         post:string,
         postuser:string,
@@ -50,19 +51,27 @@ export default function PostId(){
     },[])
     return (<>
     {/* TODO:CSS THIS AND ADD COMMENT */}
+    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center bg-orange-300 border-2 w-80">
+        <div className="flex "><div className="font-bold capitalize text-xl">{post?.post}</div>
+        <div className=" capitalize font-semibold text-l">{post?.postuser}</div>
+        <div className="font-bold">{post?.likes}</div></div>
+   
     <div>
-    {post?.post}
-    {post?.postuser}
-    {post?.likes}
+        {post?.comments.map(comment=>(
+            <div>
+                {comment}
+            </div>
+        ))}
     </div>
-    
-    <div>
+    </div>
+    <div className="flex gap-3 items-center">
         <label>Comment</label>
-        <input onChange={(e)=>setcomment(e.target.value)}></input>
-        <button onClick={()=>addcomment()}>Comment</button>
-        <button onClick={()=>console.log(post?.comments)}>Test COmments</button>
+        <input onChange={(e)=>setcomment(e.target.value)} className="border"></input>
+        <button onClick={()=>addcomment()} className="rounded-md shadow-md bg-black text-cyan-600 font-semibold p-4">Comment</button>
+        {/* <button onClick={()=>console.log(post?.comments)}className="rounded-md shadow-md bg-black text-cyan-600 font-semibold p-4" >Test COmments</button> */}
     </div>
-    
+    </div>
     {/* Used Useparams for id from url */}
     </>)
 }
