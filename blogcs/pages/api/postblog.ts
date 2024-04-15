@@ -8,7 +8,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         const {post,postuser,likes,postuserid}=req.body
         const posts=await blogmodel.collection.insertMany([{"post":post,
         "postuser":postuser
-        ,"likes":likes,"postuserid":postuserid}])
+        ,"likes":likes,"postuserid":postuserid,"comments":[]}])
         res.json({posts})
     } catch (error) {
         res.status(500).json({error})

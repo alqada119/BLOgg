@@ -35,7 +35,6 @@ export default function PostId(){
             },
             body:JSON.stringify({comment})
         })
-        console.log(addtobackend)
     }
     // const testupdate=async(post:any)=>{
     //     const backed=await fetch(`http://localhost:3000/api/${params?.id}/updatebyid`,{

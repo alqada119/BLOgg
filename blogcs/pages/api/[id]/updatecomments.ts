@@ -4,12 +4,16 @@ import { ObjectId } from "mongodb";
 import { blogmodel } from "@/schemas/blogschema";
 export default async function handler(req:NextApiRequest,res:NextApiResponse){
     try {
+        console.log("Attempting Update")
         await connecttodb()
         const { id } = req.query;
         const ids = new ObjectId(`${id}`);
         const {comment}=req.body
         console.log(comment)
-        const updates=await blogmodel.collection.updateOne({_id:ids},{$set:{comments:comment}})
+        const post=await blogmodel.collection.findOne({_id:ids})
+        console.log(post,post?.comments)
+        const newarr:string[]=post?.comments.push(comment)
+        const updates=await blogmodel.collection.updateOne({_id:ids},{$set:{comments:newarr}})
         console.log("Added Comments",updates)
         res.status(200).json({message:"Success"})
     } catch (error) {
