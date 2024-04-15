@@ -4,7 +4,7 @@ import {useParams} from "next/navigation"
 import { useEffect } from "react"
 import { useState } from "react"
 export default function PostId(){
-    //TODO: MAP Comments,CSS, Add comment to arr in backend
+    //TODO: MAP Comments,CSS, Add comment to comment array in backend
     interface blog{
         post:string,
         postuser:string,
