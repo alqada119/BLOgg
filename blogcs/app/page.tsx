@@ -6,6 +6,7 @@ import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser }
 import { useRouter } from "next/navigation";
 import Icon from "@/Components/notes";
 import Like from "@/Components/like";
+import Error from "@/Components/errorModal"
 export default function Page() {
   //TODO:  ability to upload pictures/modifying posts in Homework section , Error Handling , Tests , Deploy with CI/CD
   interface Blog {
@@ -104,6 +105,7 @@ export default function Page() {
 
   return (
     <div className="flex-col h-screen bg-gray-100">
+      <Error/>
       <div className="flex-1 p-4">
         <div className="bg-white rounded-md shadow-md h-60 p-4 flex-col">
           <div className="flex justify-between"><h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1> <UserButton/></div>
