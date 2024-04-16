@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Icon from "@/Components/notes";
 import Like from "@/Components/like";
 export default function Page() {
-  //TODO:  ability to upload pictures/modifying posts , Error Handling , Home Page
+  //TODO:  ability to upload pictures/modifying posts in Homework section , Error Handling , Tests , Deploy with CI/CD
   interface Blog {
     post:string,
     likes:number,
