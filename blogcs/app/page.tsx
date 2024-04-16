@@ -6,7 +6,7 @@ import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser }
 import { useRouter } from "next/navigation";
 import Icon from "@/Components/notes";
 import Like from "@/Components/like";
-import Error from "@/Components/errorModal"
+import Error from "@/Components/errorModal";
 export default function Page() {
   //TODO:  ability to upload pictures/modifying posts in Homework section , Error Handling , Tests , Deploy with CI/CD
   interface Blog {
@@ -79,25 +79,31 @@ export default function Page() {
   
   const addpost=async()=>{
     console.log("Frontend")
-    try {
-      const insert=await fetch("http://localhost:3000/api/postblog",{
-      method:"POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({
-        "post":post,
-        "postuser":postuser,
-        "likes":0,
-        "postuserid":user.user?.id
-      })
-    })
-    const insertf=await insert.json()
-    window.location.reload()
-    } catch (error) {
-      console.log(error)
+    if(post==""||postuser==""){
+      console.log("Error")
     }
-  }
+    else{
+      try {
+        const insert=await fetch("http://localhost:3000/api/postblog",{
+        method:"POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+          "post":post,
+          "postuser":postuser,
+          "likes":0,
+          "postuserid":user.user?.id
+        })
+      })
+      const insertf=await insert.json()
+      window.location.reload()
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    }
+    
   useEffect(() => {
     fetchBlog()
   }, []);
@@ -105,15 +111,14 @@ export default function Page() {
 
   return (
     <div className="flex-col h-screen bg-gray-100">
-      <Error/>
       <div className="flex-1 p-4">
         <div className="bg-white rounded-md shadow-md h-60 p-4 flex-col">
           <div className="flex justify-between"><h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1> <UserButton/></div>
           <div className="mt-10 flex justify-between">
             <SignedIn>
-            <button className="bg-red-800 text-white px-60 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold" onClick={()=>router.push("/posts")}>My Posts</h2></button>
-            <button className="bg-red-800 text-white px-60 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold">Trending</h2></button>
-            <button className="bg-red-800 text-white px-60 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold">Homework</h2></button>
+            <button className="bg-red-800 text-white px-40 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold" onClick={()=>router.push("/posts")}>My Posts</h2></button>
+            <button className="bg-red-800 text-white px-40 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold">Trending</h2></button>
+            <button className="bg-red-800 text-white px-40 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold">Homework</h2></button>
             </SignedIn>
           </div>
         </div>
@@ -146,6 +151,7 @@ export default function Page() {
               type="text"
               placeholder="Your Blog Content"
               className="w-full border border-gray-300 rounded-md p-2 mb-2"
+              required
               onChange={(e) => setpost(e.target.value)}
             />
             <input
@@ -153,9 +159,11 @@ export default function Page() {
               placeholder="Your Name"
               className="w-full border border-gray-300 rounded-md p-2 mb-2"
               onChange={(e) => setpostuser(e.target.value)}
+              required
             />
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              type="submit"
               onClick={() => addpost()}
             >
               Add Post
