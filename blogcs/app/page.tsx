@@ -4,8 +4,10 @@ import React from "react";
 import "../app.css";
 import { SignInButton,SignUpButton,SignedIn, SignOutButton, UserButton,useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/navigation";
+import Icon from "@/Components/notes";
+import Like from "@/Components/like";
 export default function Page() {
-  //TODO: Ability to click on post, and add comments, ability to upload pictures/modifying posts , Error Handling
+  //TODO:  ability to upload pictures/modifying posts , Error Handling , Home Page
   interface Blog {
     post:string,
     likes:number,
@@ -107,9 +109,9 @@ export default function Page() {
           <div className="flex justify-between"><h1 className="text-xl font-semibold">Welcome to CS Blog {user.user?.fullName} </h1> <UserButton/></div>
           <div className="mt-10 flex justify-between">
             <SignedIn>
-            <button className="bg-red-800 text-white px-60 py-10 rounded-md ml-3"><h2 className="text-white font-semibold" onClick={()=>router.push("/posts")}>My Posts</h2></button>
-            <button className="bg-red-800 text-white px-60 py-10 rounded-md"><h2 className="text-white font-semibold">Trending</h2></button>
-            <button className="bg-red-800 text-white px-60 py-10 rounded-md"><h2 className="text-white font-semibold">Homework</h2></button>
+            <button className="bg-red-800 text-white px-60 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold" onClick={()=>router.push("/posts")}>My Posts</h2></button>
+            <button className="bg-red-800 text-white px-60 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold">Trending</h2></button>
+            <button className="bg-red-800 text-white px-60 py-10 rounded-md border-2 border-black"><h2 className="text-white font-semibold">Homework</h2></button>
             </SignedIn>
           </div>
         </div>
@@ -122,11 +124,12 @@ export default function Page() {
           <h1 className="text-xl font-semibold mb-2">Your Daily Blogs</h1>
           <ul>
             {blog.map(posts => (
-              <li key={posts["_id"]} className="mb-2 flex justify-start items-center">
+              <li key={posts["_id"]} className="mb-2 flex justify-start items-center gap-2">
+                <button onClick={()=>router.push(`/${posts["_id"]}`)}><Icon/></button>
                 <div className="text-lg flex-row">{posts["post"]}</div>
                 <div className="text-sm text-gray-500 ml-3 w-15">By: {posts["postuser"]}</div>
                 <SignedIn>
-                  <button onClick={()=>likePost(posts["_id"],posts["likes"])}>Like</button>
+                  <button onClick={()=>likePost(posts["_id"],posts["likes"])}><Like/></button>
                 </SignedIn>
                 <div className="text-lg">{posts["likes"]} Likes</div>
               </li>

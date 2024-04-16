@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation"
 import Pencil from "../../Components/pencil"
 import Trash from "../../Components/trash"
 import Note from "../../Components/notes"
+import Back from "@/Components/backbutton";
+
 
 export default function Posts() {
     const [myblog, setMyBlog] = useState([]);
@@ -58,7 +60,8 @@ export default function Posts() {
 
     return (
     <div className="h-60 w-screen flex flex-col justify-between gap-4 ml-5">
-            <div className="mt-10"><h1 className="text-2xl font-bold">My Posts</h1></div>
+            
+            <div className="mt-10"><Back/><h1 className="text-2xl font-bold">My Posts</h1></div>
                 <div className="mt-10">
                     {myblog.length > 0 ? (
                         <div>

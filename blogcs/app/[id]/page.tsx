@@ -4,6 +4,7 @@ import {useParams} from "next/navigation"
 import { useEffect } from "react"
 import { useState } from "react"
 import "../../app.css"
+import Home from "../../Components/backbutton"
 export default function PostId(){
     //TODO: CSS
     interface blog{
@@ -52,6 +53,7 @@ export default function PostId(){
     return (<>
     {/* TODO:CSS THIS AND ADD COMMENT */}
     <div className="flex flex-col items-center justify-center h-screen border-2 border-black">
+        <Home/>
     <div className="flex flex-col items-center justify-center bg-slate-200 border-2 w-80 border-black h-1/3 w-1/3 mb-10 w-auto p-4">
         <div className="flex items-center gap-10 bg-emerald-400 border-2 p-4 text-purple-400 border-black">
             <div className="font-bold capitalize text-xl">{post?.post}</div>
