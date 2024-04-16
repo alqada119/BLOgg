@@ -66,7 +66,7 @@ export default function Posts() {
                                 <div key={index} className="flex items-center gap-4">
                                     <div><Note/></div>
                                    <div className=" font-semibold text-2xl">{post.post}</div>
-                                   <div className="ml-2 flex"><button className="" onClick={() => deletebyid(post["_id"])}><Pencil/></button></div>
+                                   {/* <div className="ml-2 flex"><button className="" onClick={() => deletebyid(post["_id"])}><Pencil/></button></div> */}
                                    <div className="ml-2 flex"><button className="" onClick={() => deletebyid(post["_id"])}><Trash/></button></div>
                                 </div>
                             ))}
