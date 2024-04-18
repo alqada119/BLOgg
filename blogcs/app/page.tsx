@@ -8,7 +8,7 @@ import Icon from "@/Components/notes";
 import Like from "@/Components/like";
 import Error from "@/Components/errorModal";
 export default function Page() {
-  //TODO:  ability to upload pictures/modifying posts in Homework section , Error Handling , Tests , Deploy with CI/CD
+  //TODO:  Realm-web for real time comments , Error Handling , Tests , Deploy with CI/CD
   interface Blog {
     post:string,
     likes:number,
