@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Icon from "@/Components/notes";
 import Like from "@/Components/like";
 import Error from "@/Components/errorModal";
+import {Socket,io} from "socket.io-client"
 export default function Page() {
   //TODO:  Real time chat , Error Handling , Tests , Deploy with CI/CD
   interface Blog {
@@ -15,6 +16,7 @@ export default function Page() {
     postuser:string,
     postuserid:string
   }
+
   const [blog,setblog]=useState<Blog[]>([]);
   const [post,setpost]=useState("");
   const [postuser,setpostuser]=useState("");
@@ -106,6 +108,12 @@ export default function Page() {
     
   useEffect(() => {
     fetchBlog()
+    const socket=io()
+    socket.on("connect",()=>{
+      console.log("Welcome")
+    })
+    return ()=>{socket.disconnect()}
+    
   }, []);
   // fetchBlog()
 
