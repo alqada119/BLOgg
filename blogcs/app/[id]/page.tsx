@@ -6,7 +6,7 @@ import { useState } from "react"
 import "../../app.css"
 import Home from "../../Components/backbutton"
 export default function PostId(){
-    //TODO: CSS
+    //TODO: CSSs
     interface blog{
         post:string,
         postuser:string,
