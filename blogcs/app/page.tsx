@@ -107,13 +107,7 @@ export default function Page() {
     }
     
   useEffect(() => {
-    fetchBlog()
-    const socket=io()
-    socket.on("connect",()=>{
-      console.log("Welcome")
-    })
-    return ()=>{socket.disconnect()}
-    
+    fetchBlog()  
   }, []);
   // fetchBlog()
 
