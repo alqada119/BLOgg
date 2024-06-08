@@ -136,7 +136,7 @@ export default function Page() {
                   <button onClick={() => router.push(`/${post._id}`)}>
                     <Icon />
                   </button>
-                  <div className="text-lg flex-row">{post.post}</div>
+                  <div className="text-lg flex-row">{post?.post}</div>
                   <div className="text-sm text-gray-500 ml-3 w-15">By: {post.postuser}</div>
                   <SignedIn>
                     <button onClick={() => likePost(post._id, post.likes)}>
