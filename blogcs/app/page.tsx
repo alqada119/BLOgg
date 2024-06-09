@@ -26,7 +26,7 @@ export default function Page() {
     const newlike=likes+1
     console.log("Liked",id)
     const updatelike=async()=>{
-      const update=await fetch(`http://localhost:3000/api/${id}/updatelikes`,{
+      const update=await fetch(`https://bl-ogg.vercel.app/api/${id}/updatelikes`,{
         method:"PATCH",
         headers: {
           'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ export default function Page() {
   // }
   const fetchBlog = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/getblog", {
+      const response = await fetch("https://bl-ogg.vercel.app/api/getblog", {
         method: "GET"
       });
       const { posts } = await response.json();
@@ -86,7 +86,7 @@ export default function Page() {
     }
     else{
       try {
-        const insert=await fetch("http://localhost:3000/api/postblog",{
+        const insert=await fetch("https://bl-ogg.vercel.app/api/postblog",{
         method:"POST",
         headers: {
           'Content-Type': 'application/json'

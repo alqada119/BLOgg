@@ -15,7 +15,7 @@ export default function Posts() {
     const router = useRouter();
     const updatebyid=async(id:any,post:string)=>{
         try {
-          const updates=await fetch(`http://localhost:3000/api/${id}/updatebyid`,{
+          const updates=await fetch(`https://bl-ogg.vercel.app/api/${id}/updatebyid`,{
           method:"PATCH",
           headers: {
             'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export default function Posts() {
     }
     const deletebyid=async(id:string)=>{
         try {
-          const deletes=await fetch(`http://localhost:3000/api/${id}/deletebyid`,{
+          const deletes=await fetch(`https://bl-ogg.vercel.app/api/${id}/deletebyid`,{
             method:"DELETE"
           })
           console.log("Successfuly deleted",deletes)
@@ -43,7 +43,7 @@ export default function Posts() {
     
       }
     const fetchMyBlogs = async (id:string) => {
-        const fetchMyBlogs = await fetch(`http://localhost:3000/api/${id}`, {
+        const fetchMyBlogs = await fetch(`https://bl-ogg.vercel.app/api/${id}`, {
             method: "GET"
         });
         const posts = await fetchMyBlogs.json();

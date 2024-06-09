@@ -18,7 +18,7 @@ export default function PostId(){
     const params=useParams<{id:string}>()
     const [post,setpost]=useState<blog>()
     const getblog=async()=>{
-        const fetched=await fetch(`http://localhost:3000/api/${params?.id}/getbyid`,{
+        const fetched=await fetch(`https://bl-ogg.vercel.app/api/${params?.id}/getbyid`,{
             method:"GET"
         })
         console.log(fetched)
@@ -30,7 +30,7 @@ export default function PostId(){
         const updatedComment=[...(post?.comments||[]),comment]
         const updatedPost:blog={...(post as blog),comments:updatedComment}
         setpost(updatedPost)
-        const addtobackend=await fetch(`http://localhost:3000/api/${params?.id}/updatecomments`,{
+        const addtobackend=await fetch(`https://bl-ogg.vercel.app/api/${params?.id}/updatecomments`,{
             method:"PUT",
             headers:{
                 "Content-Type": "application/json"
