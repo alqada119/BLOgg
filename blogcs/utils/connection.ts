@@ -4,10 +4,10 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function connecttodb(): Promise<typeof mongoose | void> {
-    console.log("Here is ", process.env.MONGODB_URL);
+    console.log("Here isd ", process.env);
 
     try {
-        const mongoUrl = process.env.MONGODB_URL;
+        const mongoUrl = process.env.mongourl;
         if (mongoUrl) {
             const connection = await mongoose.connect(mongoUrl);
             console.log("Successful connection to the database");
